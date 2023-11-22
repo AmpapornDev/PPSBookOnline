@@ -26,6 +26,7 @@ export const environment = {<br/>
    native-run  : 1.7.4<br/>
    
  ###################################################
-<b>Ionic Storage</b
+ <br/>
+<b>Ionic Storage</b>
 <br/>
 https://github.com/ionic-team/ionic-storage
