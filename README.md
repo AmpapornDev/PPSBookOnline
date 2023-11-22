@@ -24,4 +24,8 @@ export const environment = {<br/>
 <b>Utility:</b><br/>
    cordova-res : 0.15.4<br/>
    native-run  : 1.7.4<br/>
-
+   
+ ###################################################
+<b>Ionic Storage</b
+<br/>
+https://github.com/ionic-team/ionic-storage
