@@ -1,13 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tabAccount</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="gotoBack()" class="padding-top">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" class="color-text"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tabAccount</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="listAcc as itemAcc">
+    <ion-grid style="padding:15px;">
+        <ion-row>
+            <ion-col size="3">
+                <img src="assets/icon/favicon.png">
+            </ion-col>
+            <ion-col size="9">
+                <ion-label>
+                    <h1>{{itemAcc.name_member}} {{itemAcc.lastname_member}}</h1>
+                    <p>{{itemAcc.email_member}}</p>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list>
+        <ion-item (click)="gotoCartHistory(itemAcc.id_member)">
+            <ion-icon aria-hidden="true" name="bag-handle-outline" slot="start"></ion-icon>
+            <label>การชื้อของฉัน</label>
+        </ion-item>
+        <ion-item (click)="gotoSettingAccount()">
+            <ion-icon aria-hidden="true" name="person-outline" slot="start"></ion-icon>
+            <ion-label>แก้ไขข้อมูลส่วนตัว</ion-label>
+        </ion-item>
+        <ion-item (click)="gotoChangePass()">
+            <ion-icon aria-hidden="true" name="key-outline" slot="start"></ion-icon>
+            <ion-label>เปลี่ยนรหัสผ่าน</ion-label>
+        </ion-item>
+
+        <ion-item (click)="logoutAccount()">
+            <ion-icon aria-hidden="true" name="settings-outline" slot="start"></ion-icon>
+            <ion-label>ออกจากระบบ</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

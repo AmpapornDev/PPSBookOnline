@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="ion-text-left color-text padding-top">การซื้อของฉัน</ion-title>
+        <ion-buttons slot="start" (click)="gotoBack()" class="padding-top">
+            <ion-button class="padding-top-bottom">
+                <ion-icon name="arrow-back-outline" class="color-text"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <!-- เช็ดว่าถ้าไม่มีรายการสั่งซื้อสินค้า ให้โชว์ -->
+    <div *ngIf="dataPayment === null">
+        <ion-text class="ion-text-center ion-padding">
+            <p> ไม่มีรายการสั่งซื้อ </p>
+        </ion-text>
+    </div>
+
+    <ion-list *ngFor="let itemPayment of dataPayment" (click)="detailHistoryCart(itemPayment.id_payment,IdMemberStorage)">
+
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="basket-outline"></ion-icon>
+            <h6>วันที่สั่งซื้อ : {{itemPayment.create_datetime | date: 'dd / MM / yyyy'}}</h6>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="2">
+                    <img [src]="imageBaseUrl+'/image/cover_book/'+itemPayment.cover_book" alt="itemPayment.name_book" />
+                </ion-col>
+                <ion-col size="10">
+                    <p class="ion-text-nowrap">{{itemPayment.name_book}}</p>
+                    <p class="ion-text-end">x {{itemPayment.qty_book}}</p>
+                    <p class="ion-text-end color-price">฿{{itemPayment.price_book}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="border-top ptb-10">
+                <ion-col size="2">
+                    {{itemPayment.total_qty_payment}} ชิ้น
+                </ion-col>
+                <ion-col size="10" class="ion-text-end color-price">
+                    รวมการสั่งซื้อ : ฿{{itemPayment.total_amount}}
+                </ion-col>
+            </ion-row>
+            <ion-row class="border-top ptb-10">
+                <ion-col class="ion-text-center">
+                    ดูสินค้าทั้งหมดในคำสั่งซื้อ
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+
+    </ion-list>
+
+</ion-content>

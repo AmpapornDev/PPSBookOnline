@@ -1,34 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>{{dataNameCate.name_book_cate}}</ion-title>
-    <ion-buttons slot="start" (click)="goBackPage()">
-      <ion-button>
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-title class="color-text padding-top-bottom15">หมวด {{dataNameCate.name_book_cate}}</ion-title>
+        <ion-buttons slot="start" (click)="goBackPage()" class="color-text padding-top-bottom15">
+            <ion-button>
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" size-md="4" size-lg="2" *ngFor="let itemBook of dataListCate">
+                <ion-card>
+                    <img [src]="imageBaseUrl+'/image/cover_book/'+itemBook.image_book" alt="itemBook.namebook_book" (click)="gotoDetailBook(itemBook.id_book)">
+                    <ion-card-header (click)="gotoDetailBook(itemBook.id_book)">
+                        <ion-card-title class="name">{{itemBook.namebook_book}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p>{{itemBook.author_book}}</p>
+                        <p class="color-price">ราคา {{itemBook.price_book}} บาท</p>
 
-      <ion-col size="6" size-md="4" size-lg="2" *ngFor="let itemBook of dataListCate">
-        <ion-card>
-          <img [src]="imageBaseUrl+'/image/cover_book/'+itemBook.image_book" alt="itemBook.namebook_book" (click)="gotoDetailBook(itemBook.id_book)">
-          <ion-card-header (click)="gotoDetailBook(itemBook.id_book)">
-            <ion-card-title class="name">{{itemBook.namebook_book}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>{{itemBook.author_book}}</p>
-            <p class="color-price">ราคา {{itemBook.price_book}} บาท</p>
+                    </ion-card-content>
+                    <ion-button expand="block" fill="outline" class="cart" (click)="AddToCart(itemBook,var_idmember)">
+                        <ion-icon name="basket-outline" class="padding-right"></ion-icon> ซื้อหนังสือ</ion-button>
+                </ion-card>
+            </ion-col>
 
-          </ion-card-content>
-          <ion-button expand="block" fill="outline" mode="md" (click)="AddToCart(itemBook)">
-            <ion-icon name="basket-outline" class="padding-right"></ion-icon> ซื้อหนังสือ</ion-button>
-        </ion-card>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
+        </ion-row>
+    </ion-grid>
 </ion-content>

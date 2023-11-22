@@ -1,23 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Category
-    </ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-title text-left class="padding-top">
+            <img src="../assets/the-leader-logo.png" width="150" class="padding-top-bottom">
+        </ion-title>
+        <ion-buttons [collapse]="true" slot="end" class="padding-top">
+            <ion-button>
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
- 
-<ion-list>
-  <ion-item *ngFor="let itemCategory of dataList" (click)="gotoCategory(itemCategory.id_book_cate)">
-    <ion-label>{{itemCategory.name_book_cate}}</ion-label>
-    <ion-buttons>
-      <ion-button>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-item>
-</ion-list>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <ion-list>
+        <ion-list-header>
+            <h3 class="color-text">หมวดหนังสือ</h3>
+        </ion-list-header>
+        <ion-item *ngFor="let itemCategory of dataList" (click)="gotoCategory(itemCategory.id_book_cate)" class="color-text">
+            <ion-label>{{itemCategory.name_book_cate}}</ion-label>
+            <ion-buttons>
+                <ion-button class="color-text">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+    </ion-list>
 
-  
+
 </ion-content>

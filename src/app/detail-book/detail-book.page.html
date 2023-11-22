@@ -1,45 +1,41 @@
-<ion-header class="ion-no-border"><!---->
-  <ion-toolbar>
-    <ion-buttons slot="start" (click)="gotoBack()">
-      <div class="button-container">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </div>
-    </ion-buttons>
-    <ion-title> </ion-title>
-    <ion-buttons slot="end" class="buttons-last-slot sc-ion-buttons-ios-h sc-ion-buttons-ios-s ios hydrated">
-      <div class="button-container animate__animated">
-        <ion-icon name="heart-circle-outline"></ion-icon>
-      </div>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="gotoBack()" class="padding-top">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" class="color-text"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title> </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding" *ngIf="dataDetailBook as itemDetailBook">
-  <h1 class="header">{{itemDetailBook.namebook_book}}</h1>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <img [src]="imageBaseUrl+'/image/cover_book/'+itemDetailBook.image_book" alt="itemDetailBook.namebook_book"/>
-      </ion-col>
-      <ion-col size="6" class="text-bold">
-        <div class="mt-12 mb-12">ผู้แต่ง : {{itemDetailBook.author_book}}</div>
-        <div class="mb-12">หมวดหนังสือ : {{itemDetailBook.name_book_cate}}</div>
-        <div class="mb-12">ราคาปก : {{itemDetailBook.price_book}} บาท</div>
-      </ion-col>
-    </ion-row>
-    <h5>เรื่องย่อ</h5>
-    <div [innerHTML]="itemDetailBook.detail_book"></div>
-  </ion-grid>
+    <h1 class="header color-text">{{itemDetailBook.namebook_book}}</h1>
+    <ion-grid class="color-text">
+        <ion-row>
+            <ion-col size="6">
+                <img [src]="imageBaseUrl+'/image/cover_book/'+itemDetailBook.image_book" alt="itemDetailBook.namebook_book" />
+            </ion-col>
+            <ion-col size="6" class="text-bold">
+                <div class="mt-12 mb-12">ผู้แต่ง : {{itemDetailBook.author_book}}</div>
+                <div class="mb-12">หมวดหนังสือ : {{itemDetailBook.name_book_cate}}</div>
+                <div class="mb-12">ราคาปก : {{itemDetailBook.price_book}} บาท</div>
+            </ion-col>
+        </ion-row>
+        <h5 class="text-bold">เรื่องย่อ</h5>
+        <div [innerHTML]="itemDetailBook.detail_book" class="line-height"></div>
+    </ion-grid>
 
-  
+
 </ion-content>
 
 <ion-footer class="checkout" *ngIf="dataDetailBook as itemDetailBook">
-  <div class="checkoutDetails">
-    <div class="priceDetails">
-      <ion-card-subtitle class="ion-inherit-color">ราคา</ion-card-subtitle>
-      <h4>{{itemDetailBook.price_book}} บาท</h4>
+    <div class="checkoutDetails">
+        <div class="priceDetails">
+            <ion-card-subtitle class="ion-inherit-color">ราคา</ion-card-subtitle>
+            <h4>{{itemDetailBook.price_book}} บาท</h4>
+        </div>
+        <ion-button class="btncheckout" expand="block" color="new" (click)="AddToCart(itemDetailBook,var_idmember)">
+            ซื้อสินค้า</ion-button>
     </div>
-    <ion-button color="new" (click)="AddToCart(itemDetailBook)">ซื้อสินค้า</ion-button>
-  </div>
 </ion-footer>

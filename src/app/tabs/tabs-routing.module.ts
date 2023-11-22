@@ -19,10 +19,6 @@ const routes: Routes = [
         loadChildren: () => import('../tab-category/tab-category.module').then( m => m.TabCategoryPageModule)
       },
       {
-        path: 'tab-cart',
-        loadChildren: () => import('../tab-cart/tab-cart.module').then( m => m.TabCartPageModule)
-      },
-      {
         path: 'tab-account',
         loadChildren: () =>
           import('../tab-account/tab-account.module').then(

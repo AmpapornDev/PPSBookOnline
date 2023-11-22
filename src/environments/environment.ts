@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl:'http://localhost/webservice_ppsbook/webservice',
-  imageUrl:'http://localhost/bookonline/assets'
+  imageUrl:'http://localhost/web_pps_bookonline/assets'
 };
 
 /*

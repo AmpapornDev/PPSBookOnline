@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +18,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    FormsModule,
+    IonicStorageModule.forRoot()],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },],
+  
   bootstrap: [AppComponent],
 })
 export class AppModule {}

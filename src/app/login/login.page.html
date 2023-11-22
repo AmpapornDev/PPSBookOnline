@@ -1,41 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-title text-left class="padding-top">
+            <img src="../assets/the-leader-logo.png" width="150" class="padding-top-bottom">
+        </ion-title>
+        <ion-buttons slot="end" class="padding-top color">
+            <ion-button (click)="btnClose()">
+                <ion-icon name="close-circle-outline" size="large"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-<ion-content [fullscreen]="true">
+    <ion-list-header>
+        <h3 class="color-text">
+            <ion-icon name="key-outline"></ion-icon> เข้าสู่ระบบ</h3>
+    </ion-list-header>
 
-  <form [formGroup]="LoginForm" (ngSubmit)="submitForm()" novalidate>
-    <ion-item>
-      <ion-input label="Email" type="email" placeholder="email@domain.com" formControlName="email"></ion-input>
-    </ion-item>
-    <div *ngIf="this.LoginForm.controls?.email.touched && this.LoginForm.controls?.email.invalid">
-      <div class="error ion-padding" *ngIf="errorControl['email'].errors?.required">
-        <ion-text color="danger">Email is required.</ion-text>
-      </div>
-      <div class="ion-padding" *ngIf="errorControl.email.errors?.pattern">
-        <ion-text color="danger">Please provide valid email.</ion-text>
-      </div>
-    </div>
+    <form [formGroup]="LoginForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-item>
+            <ion-input class="color" label="ชื่อผู้ใช้ :" type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <div *ngIf="this.LoginForm.controls?.username.touched && this.LoginForm.controls?.username.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['username'].errors?.required">
+                <ion-text color="danger">โปรดกรอกชื่อผู้ใช้</ion-text>
+            </div>
 
-    <ion-item>
-      <ion-input label="Password" type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <div *ngIf="this.LoginForm.controls?.password.touched && this.LoginForm.controls?.password.invalid">
-      <div class="error ion-padding" *ngIf="errorControl['password'].errors?.required">
-        <ion-text color="danger">Email is required.</ion-text>
-      </div>
-    
-    </div>
+        </div>
+        <ion-item>
+            <ion-input class="color" label="รหัสผ่าน :" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div *ngIf="this.LoginForm.controls?.password.touched && this.LoginForm.controls?.password.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['password'].errors?.required">
+                <ion-text color="danger">โปรดกรอกรหัสผ่าน</ion-text>
+            </div>
+        </div>
+        <ion-row class="padding-top-bottom">
+            <ion-col size="6">
+                <ion-button color="dark" expand="block" (click)="gotoPageRegis()"> สมัครสมาชิก </ion-button>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button type="submit" color="new" expand="block"> เข้าสู่ระบบ </ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
 
-
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
-
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
-      </ion-col>
-    </ion-row>
-  </form>
 </ion-content>

@@ -1,0 +1,115 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="ion-text-left color-text padding-top">กลับตะกร้าสินค้า</ion-title>
+        <ion-buttons slot="start" (click)="gotoBack()" class="padding-top">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" class="color-text"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-list>
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-label>
+                ที่อยู่สำหรับจัดส่ง
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label class="text-detail">
+                {{dataMember.name_member}} {{dataMember.name_member}} ({{dataMember.mobile_member}})<br/> {{dataMember.address_member}} <br/> {{dataMember.district_member}} {{dataMember.amphur_member}} {{dataMember.province_member}} {{dataMember.postcode_member}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list class="cartDetail">
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-label>รายการสินค้า</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let itemListCart of listCart" lines="none">
+            <ion-row>
+                <ion-col size="4">
+                    <img [src]="imageBaseUrl+'/image/cover_book/'+itemListCart.image_book" alt="itemListCart.namebook_book" />
+                </ion-col>
+                <ion-col size="8">
+                    <p class="ion-text-wrap">{{itemListCart.namebook_book}}</p>
+                    <p>ราคา ฿{{itemListCart.price_book | number:'1.2-2' }} x {{itemListCart.qty_book}} รายการ</p>
+                    <p class="color-price">
+                        ราคารวม ฿{{itemListCart.price_book * itemListCart.qty_book | number:'1.2-2' }}
+                    </p>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+
+        <ion-item lines="none" class="border-top">
+            <ion-label><b>คำสั่งซื้อทั้งหมด {{totalSumQty}} ชิ้น</b></ion-label>
+            <ion-label slot="end">
+                <span class="price_total">รวม ฿{{totalSum | number:'1.2-2' }}</span>
+            </ion-label>
+        </ion-item>
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="car-outline"></ion-icon>
+            <ion-label>
+                การจัดส่งโดย
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-grid>
+                <ion-row class="text-detail">
+                    <ion-col size="10">การจัดส่งมาตราฐาน ไปรษณีย์ไทยส่งแบบ Ems</ion-col>
+                    <ion-col size="2" class="ion-text-end">฿50</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+        <ion-item color="light" lines="none" class="border-top">
+            <ion-icon name="cash-outline"></ion-icon>
+            <ion-select placeholder="เลือกธนาคาร" [(ngModel)]="IdBank" (ionChange)="BankHandleChange($event)">
+                <div slot="label"> วิธีชำระเงิน
+                    <ion-text color="danger">(Required)</ion-text>
+                </div>
+                <ion-select-option [value]="itemBank.id_acc_bank" *ngFor="let itemBank of listBank">โอนเงิน {{itemBank.name_bank}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="reader-outline"></ion-icon>
+            <ion-label>
+                ข้อมูลการชำระเงิน
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none" class="text-detail">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="9">รวมการสั่งซื้อ</ion-col>
+                    <ion-col size="3" class="ion-text-end">
+                        ฿{{totalSum}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="9">การจัดส่ง</ion-col>
+                    <ion-col size="3" class="ion-text-end">
+                        ฿50
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="9">ยอดขำระเงินทั้งหมด</ion-col>
+                    <ion-col size="3" class="ion-text-end">
+                        ฿{{totalEms}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="checkout">
+    <div class="checkoutDetails">
+        <div class="priceDetails">
+            <ion-card-subtitle class="ion-inherit-color"> ยอดขำระเงินทั้งหมด </ion-card-subtitle>
+            <h5>รวม ฿{{totalEms | number:'1.2-2' }}</h5>
+        </div>
+        <ion-button color="new" (click)="savePayment(totalEms,totalSumQty,totalSum,IdBank,dataMember.id_member)">สั่งสินค้า</ion-button>
+    </div>
+</ion-footer>

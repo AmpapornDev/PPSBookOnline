@@ -1,0 +1,168 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar mode="md">
+        <ion-title text-left class="padding-top">
+            <img src="../assets/the-leader-logo.png" width="150" class="padding-top-bottom">
+        </ion-title>
+        <ion-buttons slot="end" class="padding-top color">
+            <ion-button (click)="btnClose()">
+                <ion-icon name="close-circle-outline" size="large"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list-header>
+        <h3 class="color-text">
+            <ion-icon name="key-outline"></ion-icon> สมัครสมาชิก </h3>
+    </ion-list-header>
+    <form [formGroup]="regisForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-label>
+                ข้อมูลส่วนตัว
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-input class="color" label="ชื่อผู้ใช้ :" type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.username.touched && this.regisForm.controls?.username.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['username'].errors?.required">
+                <ion-text color="danger">โปรดกรอกชื่อผู้ใช้</ion-text>
+            </div>
+        </div>
+
+        <!-- Name -->
+        <ion-item>
+            <ion-input class="color" label="ชื่อ :" type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.name.touched && this.regisForm.controls?.name.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['name'].errors?.required">
+                <ion-text color="danger">โปรดกรอกชื่อ</ion-text>
+            </div>
+        </div>
+
+        <!-- lastName -->
+        <ion-item>
+            <ion-input class="color" label="นามสกุล :" type="text" formControlName="lastname"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.lastname.touched && this.regisForm.controls?.lastname.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['lastname'].errors?.required">
+                <ion-text color="danger">โปรดกรอกนามสกุล</ion-text>
+            </div>
+        </div>
+
+        <!-- email -->
+        <ion-item>
+            <ion-input class="color" label="อีเมล์ :" type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.email.touched && this.regisForm.controls?.email.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['email'].errors?.required">
+                <ion-text color="danger">โปรดกรอกอีเมล์</ion-text>
+            </div>
+            <div class="error ion-padding" *ngIf="errorControl['email'].errors?.pattern">
+                <ion-text color="danger">โปรดกรอกอีเมล์ให้ถูกต้อง</ion-text>
+            </div>
+        </div>
+
+        <!-- Mobile -->
+        <ion-item>
+            <ion-input class="color" maxlength="10" formControlName="mobile" type="text" label="มือถือ :" required></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.mobile.touched && this.regisForm.controls?.mobile.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['mobile'].errors?.required">
+                <ion-text color="danger">โปรดกรอกเบอร์มือถือ</ion-text>
+            </div>
+            <div class="error ion-padding" *ngIf="errorControl['mobile'].errors?.pattern">
+                <ion-text color="danger">โปรดกรอกเฉพาะตัวเลข</ion-text>
+            </div>
+        </div>
+
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-label>
+                ที่อยู่สำหรับจัดส่ง
+            </ion-label>
+        </ion-item>
+        <!-- address -->
+        <ion-item>
+            <ion-textarea class="color" label="ที่อยู่ :" formControlName="address" required></ion-textarea>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.address.touched && this.regisForm.controls?.address.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['address'].errors?.required">
+                <ion-text color="danger">โปรดกรอกที่อยู่.</ion-text>
+            </div>
+        </div>
+
+        <!-- district -->
+        <ion-item>
+            <ion-input class="color" label="ตำบล/แขวง :" type="text" formControlName="district"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.district.touched && this.regisForm.controls?.district.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['district'].errors?.required">
+                <ion-text color="danger">โปรดกรอกข้อมูล</ion-text>
+            </div>
+        </div>
+
+        <!-- amphur -->
+        <ion-item>
+            <ion-input class="color" label="อำเภอ/เขต :" type="text" formControlName="amphur"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.amphur.touched && this.regisForm.controls?.amphur.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['amphur'].errors?.required">
+                <ion-text color="danger">โปรดกรอกข้อมูล</ion-text>
+            </div>
+        </div>
+
+        <!-- province -->
+        <ion-item>
+            <ion-input class="color" label="จังหวัด :" type="text" formControlName="province"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.province.touched && this.regisForm.controls?.province.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['province'].errors?.required">
+                <ion-text color="danger">โปรดกรอกข้อมูล</ion-text>
+            </div>
+        </div>
+
+        <!-- postcode -->
+        <ion-item>
+            <ion-input class="color" label="รหัสไปรษณีย์ :" type="text" formControlName="postcode"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.postcode.touched && this.regisForm.controls?.postcode.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['postcode'].errors?.required">
+                <ion-text color="danger">โปรดกรอกข้อมูล</ion-text>
+            </div>
+        </div>
+
+        <ion-item color="light" lines="none" class="border-top-bottom">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-label>
+                รหัสผ่าน
+            </ion-label>
+        </ion-item>
+        <!-- Password -->
+        <ion-item>
+            <ion-input class="color" label="รหัสผ่าน :" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.password.touched && this.regisForm.controls?.password.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['password'].errors?.required">
+                <ion-text color="danger">โปรดกรอกรหัสผ่าน</ion-text>
+            </div>
+        </div>
+
+        <!-- Conform Password -->
+        <ion-item>
+            <ion-input class="color" label="ยืนยันรหัสผ่าน :" type="password" formControlName="confirm_password"></ion-input>
+        </ion-item>
+        <div *ngIf="this.regisForm.controls?.confirm_password.touched && this.regisForm.controls?.confirm_password.invalid">
+            <div class="error ion-padding" *ngIf="errorControl['confirm_password'].errors?.required">
+                <ion-text color="danger">โปรดกรอกรหัสผ่าน</ion-text>
+            </div>
+        </div>
+        <ion-row class="padding-top-bottom">
+            <ion-col>
+                <ion-button type="submit" color="new" expand="block">สมัครสมาชิก</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+
+</ion-content>

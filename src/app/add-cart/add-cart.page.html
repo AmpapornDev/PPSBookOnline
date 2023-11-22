@@ -1,59 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start" (click)="gotoBack()">
-      <div class="button-container">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </div>
-    </ion-buttons>
-    <ion-title> รถเข็น </ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="gotoBack()" class="padding-top">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" class="color-text"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="color-text ion-text-left padding-top"> ตะกร้าสินค้า </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list class="cartDetail">
-    <ion-item lines="full" *ngFor="let itemListCart of listCart">
-      <ion-row>
-        <ion-col size="3">
-          <img [src]="imageBaseUrl+'/image/cover_book/'+itemListCart.image_book" alt="itemListCart.namebook_book" />
-        </ion-col>
-        <ion-col size="6">
-          <div>
-            <p class="ion-text-wrap">{{itemListCart.namebook_book}}</p>
-            <p>ราคา ฿{{itemListCart.price_book | number:'1.2-2' }}</p>
-            <p class="color-price">
-              ราคารวม ฿{{itemListCart.price_book * itemListCart.qty_book | number:'1.2-2' }}
-            </p>
-          </div>
-        </ion-col>
-        <ion-col size="3">
-          <ion-row>
-            <ion-col size="3" class="ion-text-center" (click)="increment(itemListCart.qty_book)">
-              <ion-icon name="add-circle-sharp" class="icon-increment"></ion-icon>
-            </ion-col>
 
-            <ion-col size="3" class="ion-text-center">{{itemListCart.qty_book}}</ion-col>
+    <!-- เช็ดว่าถ้าไม่มีสินค้าในตะกร้าให้โชว์ -->
+    <div *ngIf="dataListCart === null">
+        <ion-text class="ion-text-center ion-padding">
+            <p>ไม่พบสินค้าในตะกร้า</p>
+        </ion-text>
+    </div>
 
-            <ion-col size="3" class="ion-text-center" (click)="decrement(itemListCart.qty_book)">
-              <ion-icon name="remove-circle-sharp" class="icon-increment"></ion-icon>
-            </ion-col>
-
-            <div class="ion-text-center pt-20">
-              <ion-badge color="danger" (click)="delCart(itemListCart)">ลบสินค้า</ion-badge>
-            </div>
-
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-  </ion-list>
-  </ion-content>
+    <ion-list class="cartDetail">
+        <ion-item lines="full" *ngFor="let itemListCart of listCart">
+            <ion-grid [fixed]="true">
+                <ion-row>
+                    <ion-col size="3">
+                        <img [src]="imageBaseUrl+'/image/cover_book/'+itemListCart.image_book" alt="itemListCart.namebook_book" />
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="color-text">
+                            <p class="ion-text-wrap">{{itemListCart.namebook_book}}</p>
+                            <p>ราคา ฿{{itemListCart.price_book | number:'1.2-2' }}</p>
+                            <p class="color-price">
+                                ราคารวม ฿{{itemListCart.price_book * itemListCart.qty_book | number:'1.2-2' }}
+                            </p>
+                        </div>
+                    </ion-col>
+                    <ion-col size="3" class="color-text">
+                        <ion-row>
+                            <p class="ion-text-center">
+                                {{itemListCart.qty_book}} รายการ
+                            </p>
+                        </ion-row>
+                        <ion-row>
+                            <div class="ion-text-center pt-20">
+                                <ion-badge color="danger" (click)="delCart(itemListCart,value_member)">ลบสินค้า</ion-badge>
+                            </div>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+</ion-content>
 
 <ion-footer class="checkout">
-  <div class="checkoutDetails">
-    <div class="priceDetails">
-      <ion-card-subtitle class="ion-inherit-color">จำนวน {{totalSumQty}} รายการ</ion-card-subtitle>
-      <h5>รวม ฿{{totalSum | number:'1.2-2' }}</h5>
+    <div class="checkoutDetails">
+        <div class="priceDetails">
+            <ion-card-subtitle class="ion-inherit-color">จำนวน {{totalSumQty}} รายการ</ion-card-subtitle>
+            <h5>รวม ฿{{totalSum | number:'1.2-2' }}</h5>
+        </div>
+        <ion-button color="new" *ngIf="dataListCart !== null" (click)="gotoCheckout()">ชำระเงิน</ion-button>
+        <ion-button color="new" *ngIf="dataListCart === null">ชำระเงิน</ion-button>
     </div>
-    <ion-button color="new">ชำระเงิน</ion-button>
-  </div>
 </ion-footer>

@@ -1,26 +1,30 @@
-ion-card-header,ion-card-content{
+ion-card-header,
+ion-card-content {
     padding: 0.5rem;
 }
 
 ion-card-title.name {
-    color: #000;
+    color: var(--ion-color-reader);
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: -0.14px;
 }
-ion-card-content p{
+
+ion-card-content p {
     font-size: 13px;
 }
-ion-button{
-    font-size: 12px;
 
+ion-button {
+    font-size: 12px;
 }
-.color-price{
+
+.color-price {
     font-weight: 700;
-   color: rgb(255, 105, 120)
+    color: rgb(255, 105, 120)
 }
-.padding-right{
-    padding-right:0.5rem;
+
+.padding-right {
+    padding-right: 0.5rem;
 }
