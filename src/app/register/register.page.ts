@@ -33,9 +33,9 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     this.regisForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(6)]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      lastname: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
       email: [
         '',
         [
@@ -43,25 +43,21 @@ export class RegisterPage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      address: ['', [Validators.required, Validators.minLength(3)]],
-      district: ['', [Validators.required, Validators.minLength(3)]],
-      amphur: ['', [Validators.required, Validators.minLength(3)]],
-      province: ['', [Validators.required, Validators.minLength(3)]],
-      postcode: ['', [Validators.required,Validators.minLength(5),Validators.pattern('^[0-9]+$')]],
+      mobile: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      district: ['', [Validators.required]],
+      amphur: ['', [Validators.required]],
+      province: ['', [Validators.required]],
+      postcode: ['', [Validators.required]],
       password: [
         '',
         [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20),
+          Validators.required
         ],
       ],confirm_password: [
         '',
         [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20),
+          Validators.required
         ],
       ],
     });
